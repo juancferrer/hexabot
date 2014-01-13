@@ -168,7 +168,7 @@ public class JoystickView extends View {
             yPosition = (int) centerY;
         }
         if (mOnJoystickMoveListener != null){
-            mOnJoystickMoveListener.onValueChanged(getAngle(), getPower(), getDirection(), getXPosition(), getYPosition());
+            mOnJoystickMoveListener.onJoystickValueChanged(getAngle(), getPower(), getDirection(), getXPosition(), getYPosition());
         }
         return true;
     }
@@ -251,7 +251,7 @@ public class JoystickView extends View {
     }
 
     public static interface OnJoystickMoveListener {
-        public void onValueChanged(int angle, int power, int direction, int xPosition, int yPosition);
+        public void onJoystickValueChanged(int angle, int power, int direction, int xPosition, int yPosition);
     }
 
 }
