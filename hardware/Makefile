@@ -17,7 +17,8 @@
 
 DEVICE     = atmega168
 CLOCK      = 16000000L
-PROGRAMMER = -c arduino -P /dev/ttyUSB4 -b 19200 -v -v -v
+UARTPORT   = /dev/ttyUSB4
+PROGRAMMER = -c arduino -P $(UARTPORT) -b 19200 -v -v -v
 OBJECTS    = main.o
 # Fuse values for nano168 from arduino/boards.txt
 FUSES      = -U hfuse:w:0xDD:m -U lfuse:w:0xFF:m -U efuse:w:0x00:m -U lock:w:0x3F:m
