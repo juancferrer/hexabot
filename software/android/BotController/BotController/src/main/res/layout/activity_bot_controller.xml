@@ -1,0 +1,73 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/LinearLayout1"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#33B5E5"
+    android:orientation="vertical"
+    tools:context=".BotController" >
+
+      <com.micronixsolutions.botcontroller.views.JoystickView
+          android:id="@+id/joystickView"
+          android:layout_width="fill_parent"
+          android:layout_height="wrap_content"
+          android:layout_gravity="center_horizontal|center_vertical" />
+
+      <TableLayout
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content" >
+
+          <TableRow
+              android:id="@+id/tableRow1"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content" >
+
+              <TextView
+                  android:id="@+id/angleLabel"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:text="Angle:" />
+
+              <TextView
+                  android:id="@+id/angleText"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:layout_gravity="right"
+                  android:text="0" />
+
+          </TableRow>
+
+          <TableRow
+              android:id="@+id/tableRow2"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content" >
+              
+              <TextView
+                  android:id="@+id/powerLabel"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:text="Power:" />
+
+              <TextView
+                  android:id="@+id/powerText"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:layout_gravity="right"
+                  android:text="0" />
+              
+          </TableRow>
+
+          <TableRow
+              android:id="@+id/tableRow3"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content" >
+          </TableRow>
+
+          <TableRow
+              android:id="@+id/tableRow4"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content" >
+          </TableRow>
+      </TableLayout>
+
+</LinearLayout>

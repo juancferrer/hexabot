@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/BotController.iml" filepath="$PROJECT_DIR$/BotController.iml" />
+      <module fileurl="file://$PROJECT_DIR$/BotController/BotController-BotController.iml" filepath="$PROJECT_DIR$/BotController/BotController-BotController.iml" />
+      <module fileurl="file://$PROJECT_DIR$/IOIOLib/IOIOLib.iml" filepath="$PROJECT_DIR$/IOIOLib/IOIOLib.iml" />
+      <module fileurl="file://$PROJECT_DIR$/IOIOLibAccessory/IOIOLibAccessory.iml" filepath="$PROJECT_DIR$/IOIOLibAccessory/IOIOLibAccessory.iml" />
+      <module fileurl="file://$PROJECT_DIR$/IOIOLibBT/IOIOLibBT.iml" filepath="$PROJECT_DIR$/IOIOLibBT/IOIOLibBT.iml" />
+    </modules>
+  </component>
+</project>
+
