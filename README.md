@@ -4,6 +4,8 @@ A custom firmware for the [Wild Thumper Controller](https://www.sparkfun.com/pro
 and an Android application to drive the controller.
 The Android app communicates with the controller using Bluetooth with a [IOIO board](https://github.com/ytai/ioio/wiki)
 
+[View the robot on youtube](http://www.youtube.com/watch?v=C8LEpY3_4Xg)
+
 Hardware Setup
 ---------------
 * Connect Pin7(UART TX) on the IOIO board to D0 pin (towards chip) on controller.
