@@ -1,0 +1,52 @@
+apply plugin: 'android'
+
+android {
+    compileSdkVersion 19
+    buildToolsVersion "19.0.1"
+
+    defaultConfig {
+        minSdkVersion 14
+        targetSdkVersion 19
+        versionCode 1
+        versionName "1.0"
+
+        ndk{
+            moduleName "detection_based_tracker"
+        }
+    }
+    buildTypes {
+        release {
+            runProguard false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
+        }
+    }
+
+    productFlavors{
+        x86{
+            ndk{
+                abiFilter "x86"
+            }
+        }
+       arm{
+            ndk{
+                abiFilter "armeabi-v7a"
+            }
+        }
+        mips{
+            ndk{
+                abiFilter "mips"
+            }
+        }
+    }
+
+    //Only need this because gradle fucks up with your Android.mk, and removes the include OpenCV.mk
+    sourceSets.main{
+        jni.srcDirs = []
+        //Use opencv-libs because it'll build everything, but not libopencv_java.so, WTF
+        jniLibs.srcDirs = ['src/main/libs', 'src/main/opencv-libs']
+    }
+}
+
+dependencies {
+    compile project(':opencv-android')
+}
