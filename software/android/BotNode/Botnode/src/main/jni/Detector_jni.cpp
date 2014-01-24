@@ -13,7 +13,7 @@ using namespace cv;
 JNIEXPORT jlong JNICALL Java_com_micronixsolutions_botnode_Detector_nativeCreateObject
 (JNIEnv * jenv, jclass, jint hMin, jint hMax, jint sMin, jint sMax, jint vMin, jint vMax, jint erodeSize, jint dilateSize)
 {
-    LOGD("Java_com_micronixsolutions_botnode_Detector_nativeCreateObject enter");
+    //LOGD("Java_com_micronixsolutions_botnode_Detector_nativeCreateObject enter");
     jlong result = 0;
     try
     {
@@ -21,7 +21,7 @@ JNIEXPORT jlong JNICALL Java_com_micronixsolutions_botnode_Detector_nativeCreate
     }
     catch(cv::Exception& e)
     {
-        LOGD("nativeCreateObject caught cv::Exception: %s", e.what());
+        //LOGD("nativeCreateObject caught cv::Exception: %s", e.what());
         jclass je = jenv->FindClass("org/opencv/core/CvException");
         if(!je)
             je = jenv->FindClass("java/lang/Exception");
@@ -29,27 +29,27 @@ JNIEXPORT jlong JNICALL Java_com_micronixsolutions_botnode_Detector_nativeCreate
     }
     catch (...)
     {
-        LOGD("nativeCreateObject caught unknown exception");
+        //LOGD("nativeCreateObject caught unknown exception");
         jclass je = jenv->FindClass("java/lang/Exception");
         jenv->ThrowNew(je, "Unknown exception in JNI code of Detector.nativeCreateObject()");
         return 0;
     }
 
-    LOGD("Java_com_micronixsolutions_botnode_Detectior exit");
+    //LOGD("Java_com_micronixsolutions_botnode_Detectior exit");
     return result;
 }
 
 JNIEXPORT void JNICALL Java_com_micronixsolutions_botnode_Detector_nativeDetect
 (JNIEnv * jenv, jclass, jlong thiz, jlong origImg, jlong processedImg)
 {
-    LOGD("Java_com_micronixsolutions_botnode_Detector_nativeDetect enter");
+    //LOGD("Java_com_micronixsolutions_botnode_Detector_nativeDetect enter");
     try
     {
         ((Detector*)thiz)->detect((Mat*)origImg, (Mat*)processedImg);
     }
     catch(cv::Exception& e)
     {
-        LOGD("nativeCreateObject caught cv::Exception: %s", e.what());
+        //LOGD("nativeCreateObject caught cv::Exception: %s", e.what());
         jclass je = jenv->FindClass("org/opencv/core/CvException");
         if(!je)
             je = jenv->FindClass("java/lang/Exception");
@@ -57,9 +57,9 @@ JNIEXPORT void JNICALL Java_com_micronixsolutions_botnode_Detector_nativeDetect
     }
     catch (...)
     {
-        LOGD("nativeDetect caught unknown exception");
+        //LOGD("nativeDetect caught unknown exception");
         jclass je = jenv->FindClass("java/lang/Exception");
         jenv->ThrowNew(je, "Unknown exception in JNI code Detector.nativeDetect()");
     }
-    LOGD("Java_com_micronixsolutions_botnode_Detector_nativeDetect exit");
+    //LOGD("Java_com_micronixsolutions_botnode_Detector_nativeDetect exit");
 }
