@@ -4,7 +4,7 @@
     android:layout_height="fill_parent"
     tools:context="com.micronixsolutions.botnode.CameraFragment">
 
-    <org.opencv.android.JavaCameraView
+    <com.micronixsolutions.botnode.CustomCameraView
         android:id="@+id/camera_view"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent" />
