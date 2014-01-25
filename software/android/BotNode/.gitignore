@@ -3,3 +3,6 @@
 /.idea/workspace.xml
 .DS_Store
 */src/main/obj
+*/src/main/jni/obj
+*/src/main/libs
+

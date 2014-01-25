@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="Gradle: gdbcrap">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/Botnode/src/main/libs/gdbcrap.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

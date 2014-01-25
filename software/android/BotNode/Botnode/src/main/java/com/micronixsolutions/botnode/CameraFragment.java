@@ -71,6 +71,10 @@ public class CameraFragment extends Fragment implements CameraBridgeViewBase.CvC
         //Call a native method to process image, and display that.
         mOrigImg = ((CustomCameraView.JavaCameraFrame) inputFrame);
         if(mLowColorLimit==null || mHighColorLimit==null || !mFilterColor){
+            if(mDisplay.getRotation() == Surface.ROTATION_270){
+                Core.flip(mOrigImg.rgba(), mProcessedImg, -1);
+                return  mProcessedImg;
+            }
             return mOrigImg.rgba();
         }
         else{
@@ -82,7 +86,7 @@ public class CameraFragment extends Fragment implements CameraBridgeViewBase.CvC
             mProcessedImg.setTo(new Scalar(0,0,0,0));
             mOrigImg.rgba().copyTo(mProcessedImg, mask); //copy rgb data to processed
             if(mDisplay.getRotation() == Surface.ROTATION_270){
-                Core.flip(mOrigImg.mYuvFrameData, mProcessedImg, -1);
+                Core.flip(mProcessedImg, mProcessedImg, -1);
             }
             return mProcessedImg;
         }
