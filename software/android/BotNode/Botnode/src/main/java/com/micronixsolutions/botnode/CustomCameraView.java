@@ -322,7 +322,7 @@ public class CustomCameraView extends JavaCameraView {
             mCamera.addCallbackBuffer(mBuffer);
     }
 
-    private class JavaCameraFrame implements CvCameraViewFrame {
+    public class JavaCameraFrame implements CvCameraViewFrame {
         public Mat gray() {
             return mYuvFrameData.submat(0, mHeight, 0, mWidth);
         }
@@ -330,6 +330,10 @@ public class CustomCameraView extends JavaCameraView {
         public Mat rgba() {
             Imgproc.cvtColor(mYuvFrameData, mRgba, Imgproc.COLOR_YUV2BGR_NV12, 4);
             return mRgba;
+        }
+
+        public Mat yuv(){
+            return mYuvFrameData;
         }
 
         public JavaCameraFrame(Mat Yuv420sp, int width, int height) {
@@ -344,7 +348,7 @@ public class CustomCameraView extends JavaCameraView {
             mRgba.release();
         }
 
-        private Mat mYuvFrameData;
+        public Mat mYuvFrameData;
         private Mat mRgba;
         private int mWidth;
         private int mHeight;

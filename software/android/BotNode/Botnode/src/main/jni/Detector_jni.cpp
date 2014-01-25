@@ -40,12 +40,23 @@ JNIEXPORT jlong JNICALL Java_com_micronixsolutions_botnode_Detector_nativeCreate
 }
 
 JNIEXPORT void JNICALL Java_com_micronixsolutions_botnode_Detector_nativeDetect
-(JNIEnv * jenv, jclass, jlong thiz, jlong origImg, jlong processedImg)
+(JNIEnv * jenv, jclass, jlong thiz, jlong origImg, jlong processedImg, jobject lowLimit, jobject highLimit)
 {
+    jclass scalarClass = jenv->GetObjectClass(lowLimit);
+    jfieldID valField = jenv->GetFieldID(scalarClass, "val", "[D");
+
+    jdoubleArray lowArray = static_cast<jdoubleArray>(jenv->GetObjectField(lowLimit, valField));
+    jdoubleArray highArray = static_cast<jdoubleArray>(jenv->GetObjectField(highLimit, valField));
+
+    double *lowLimitData = jenv->GetDoubleArrayElements(lowArray, 0);
+    double *highLimitData = jenv->GetDoubleArrayElements(highArray, 0);
+
+    Scalar low = Scalar(lowLimitData[0], lowLimitData[1], lowLimitData[2]);
+    Scalar high = Scalar(highLimitData[0], highLimitData[1], highLimitData[2]);
     //LOGD("Java_com_micronixsolutions_botnode_Detector_nativeDetect enter");
     try
     {
-        ((Detector*)thiz)->detect((Mat*)origImg, (Mat*)processedImg);
+        ((Detector*)thiz)->detect((Mat*)origImg, (Mat*)processedImg, &low, &high);
     }
     catch(cv::Exception& e)
     {

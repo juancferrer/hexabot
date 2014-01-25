@@ -7,7 +7,8 @@ class Detector{
                 int vMin=0, int vMax=255, int erodeSize=0, int dilateSize=0);
         ~Detector(void);
 
-        void detect(Mat *origImg, Mat *processedImg);
+        void detect(Mat *origImg, Mat *processedImg, Scalar *lowLimit,
+                Scalar *highLimit);
 
     private:
         int hMin, hMax, sMin, sMax, vMin, vMax, erodeSize, dilateSize;

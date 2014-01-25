@@ -15,6 +15,14 @@ Detector::Detector(int hMi, int hMax, int sMin, int sMax,
 Detector::~Detector(void){
 }
 
-void Detector::detect(Mat *origImg, Mat *processedImg){
-    cvtColor(*origImg, *processedImg, CV_BGR2HSV); //Convert from BGR to HSV
+void Detector::detect(Mat *origImg, Mat *processedImg, Scalar *lowLimit,
+        Scalar *highLimit){
+    //cvtColor(*origImg, *processedImg, CV_BGR2HSV); //Convert from BGR to HSV
+    //Create mask, leaving only selected color
+    Mat mask;
+    inRange(*origImg, *lowLimit, *highLimit, mask);
+    processedImg->setTo(Scalar(0,0,0)); //Turn black
+    origImg->copyTo(*processedImg, mask); //Put original through mask
+    //Convert to rgba, so android can display it
+    cvtColor(*processedImg, *processedImg, CV_YUV2BGR_NV12, 4);
 }

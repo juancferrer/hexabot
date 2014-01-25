@@ -41,12 +41,40 @@ android {
 
     //Only need this because gradle fucks up with your Android.mk, and removes the include OpenCV.mk
     sourceSets.main{
-        jni.srcDirs = []
+        jni.srcDirs = [] //Stops gradle from fucking up Android.mk, have to run ndk-build manually
         //Use opencv-libs because it'll build everything, but not libopencv_java.so, WTF
         jniLibs.srcDirs = ['src/main/libs', 'src/main/opencv-libs']
     }
 }
 
+//Create a 'copy gdb crap' task...copies gdb to
+task copyGDBStuff(type: Copy) {
+    from(new File('src/main/libs')) { include '**/gdb*' }
+    into new File(buildDir, 'lib')
+}
+//Make sure 'compile' task depends on gdb crap
+//tasks.withType(Compile) { compileTask -> compileTask.dependsOn copyGDBStuff }
+
+
+/*
+tasks.withType(com.android.build.gradle.tasks.PackageApplication) { pkgTask ->
+    pkgTask.jniFolders = new HashSet<File>()
+    pkgTask.jniFolders.add( new File(buildDir, 'lib'));
+}
+*/
+
+
+task gdbCrapToJar(type: Zip, description: 'create a jar archive of the gdb crap') {
+    destinationDir file("src/main/libs")
+    baseName 'gdbcrap'
+    extension 'jar'
+    from fileTree(dir: 'src/main/libs', include: '**/gdb*')
+    into 'lib/'
+}
+
+tasks.withType(JavaCompile) { compileTask -> compileTask.dependsOn gdbCrapToJar }
+
 dependencies {
     compile project(':opencv-android')
+    compile fileTree(dir: "src/main/libs", include: 'gdbcrap.jar')
 }
