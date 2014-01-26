@@ -78,13 +78,15 @@ public class CameraFragment extends Fragment implements CameraBridgeViewBase.CvC
             return mOrigImg.rgba();
         }
         else{
-            //mDetector.detect(mOrigImg.mYuvFrameData, mProcessedImg, mLowColorLimit, mHighColorLimit);
+            mDetector.detect(mOrigImg.mYuvFrameData, mProcessedImg, mLowColorLimit, mHighColorLimit);
+            /*
             Mat mask = new Mat();
             Mat hsv = new Mat();
             Imgproc.cvtColor(mOrigImg.rgba(), hsv, Imgproc.COLOR_RGB2HSV); // Convert yuv to hsv
             Core.inRange(hsv, mLowColorLimit, mHighColorLimit, mask); //filter in hsv
             mProcessedImg.setTo(new Scalar(0,0,0,0));
             mOrigImg.rgba().copyTo(mProcessedImg, mask); //copy rgb data to processed
+            */
             if(mDisplay.getRotation() == Surface.ROTATION_270){
                 Core.flip(mProcessedImg, mProcessedImg, -1);
             }
@@ -111,6 +113,9 @@ public class CameraFragment extends Fragment implements CameraBridgeViewBase.CvC
         double[] color;
         double xFactor, yFactor;
         Mat rgba = mOrigImg.rgba();
+        if(mDisplay.getRotation() == Surface.ROTATION_270){
+            Core.flip(rgba, rgba, -1);
+        }
         Mat hsv = new Mat();
         Imgproc.cvtColor(rgba, hsv, Imgproc.COLOR_RGB2HSV);
         if(mDisplay.getRotation() == Surface.ROTATION_0){

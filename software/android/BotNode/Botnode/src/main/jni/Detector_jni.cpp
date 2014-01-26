@@ -10,6 +10,8 @@
 using namespace std;
 using namespace cv;
 
+
+
 JNIEXPORT jlong JNICALL Java_com_micronixsolutions_botnode_Detector_nativeCreateObject
 (JNIEnv * jenv, jclass, jint hMin, jint hMax, jint sMin, jint sMax, jint vMin, jint vMax, jint erodeSize, jint dilateSize)
 {
@@ -57,6 +59,9 @@ JNIEXPORT void JNICALL Java_com_micronixsolutions_botnode_Detector_nativeDetect
     try
     {
         ((Detector*)thiz)->detect((Mat*)origImg, (Mat*)processedImg, &low, &high);
+        //Release stuff
+        jenv->ReleaseDoubleArrayElements(lowArray, lowLimitData,0);
+        jenv->ReleaseDoubleArrayElements(highArray, highLimitData,0);
     }
     catch(cv::Exception& e)
     {

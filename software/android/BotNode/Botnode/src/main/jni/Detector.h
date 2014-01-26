@@ -12,4 +12,5 @@ class Detector{
 
     private:
         int hMin, hMax, sMin, sMax, vMin, vMax, erodeSize, dilateSize;
+        Mat rgb, hsv, mask;
 };
